@@ -49,10 +49,10 @@
             android:backgroundTint="@color/colorAccent"
             android:ems="10"
             android:hint="@string/email"
+            android:importantForAutofill="no"
             android:inputType="textEmailAddress"
             android:textColor="#FFFFFF"
-            android:textColorHint="@color/colorAccent"
-            android:importantForAutofill="no" />
+            android:textColorHint="@color/colorAccent" />
 
         <Space
             android:layout_width="20dp"
