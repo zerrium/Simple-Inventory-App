@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import java.util.ArrayList;
+
 public class SqliteHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "itemdb";
@@ -41,14 +43,48 @@ public class SqliteHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_ITEMS);
     }
 
-    /*
-    protected void addUser(User user){
+    //CRUD methods (create, read, update, delete)
+    protected void addItem(Item item){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues v = new ContentValues();
-        v.put(KEY_USER_NAME, user.userName);
-        v.put(KEY_EMAIL, user.email);
-        v.put(KEY_PASSWORD, user.password);
-        long todo_id = db.insert(TABLE_USERS, null, v);
+        v.put(KEY_ID, item.getId());
+        v.put(KEY_NAME, item.getName());
+        v.put(KEY_QTY, item.getQty());
+        v.put(KEY_DESC, item.getDesc());
+        long todo_id = db.insert(TABLE_ITEMS, null, v);
     }
-    */
+
+    protected ArrayList<Item> getItem(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                TABLE_ITEMS, //table
+                new String[]{KEY_ID, KEY_NAME, KEY_QTY, KEY_DESC}, //column
+                "*", //selection
+                null, //where
+                null, //groupby
+                null, //having
+                null); //orderby
+
+        ArrayList<Item> i = new ArrayList<>();
+        while(cursor.moveToNext()){
+            i.add(new Item(cursor.getString(0), cursor.getString(1), cursor.getInt(2), cursor.getString(3)));
+        }
+
+        return i;
+    }
+
+    protected void updateItem(Item item){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues v = new ContentValues();
+        v.put(KEY_NAME, item.getName());
+        v.put(KEY_QTY, item.getQty());
+        v.put(KEY_DESC, item.getDesc());
+        long todo_id = db.update(TABLE_ITEMS, v, KEY_ID + "LIKE ?", new String[]{item.getId()});
+    }
+
+    protected void deleteItem(Item item){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long todo_id = db.delete(TABLE_ITEMS, KEY_ID + "LIKE ?", new String[]{item.getId()});
+    }
 }
