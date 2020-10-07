@@ -70,7 +70,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         while(cursor.moveToNext()){
             i.add(new Item(cursor.getString(0), cursor.getString(1), cursor.getInt(2), cursor.getString(3)));
         }
-
+        cursor.close();
         return i;
     }
 
