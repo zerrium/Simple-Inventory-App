@@ -27,10 +27,10 @@ import java.util.ArrayList;
 public class ListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private static RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private SqliteHelper sqlhelper;
-    private ArrayList<Item> items;
+    private static SqliteHelper sqlhelper;
+    private static ArrayList<Item> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,5 +132,20 @@ public class ListActivity extends AppCompatActivity {
                 dialog.create().show();
             }
         });
+    }
+
+    protected static void updateList(Item item, Item old){
+        sqlhelper.updateItem(item);
+        items.get(items.indexOf(old)).setName(item.getName());
+        items.get(items.indexOf(old)).setQty(item.getQty());
+        items.get(items.indexOf(old)).setDesc(item.getDesc());
+        mAdapter.notifyItemChanged(items.indexOf(old));
+    }
+
+    protected static void deleteList(Item item){
+        int index = items.indexOf(item);
+        sqlhelper.deleteItem(item);
+        items.remove(item);
+        mAdapter.notifyItemRemoved(index);
     }
 }

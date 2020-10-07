@@ -82,12 +82,12 @@ public class SqliteHelper extends SQLiteOpenHelper {
         v.put(KEY_NAME, item.getName());
         v.put(KEY_QTY, item.getQty());
         v.put(KEY_DESC, item.getDesc());
-        db.update(TABLE_ITEMS, v, KEY_ID + "LIKE ?", new String[]{String.valueOf(item.getId())});
+        db.update(TABLE_ITEMS, v, KEY_ID + "=" + item.getId(), null);
     }
 
     protected void deleteItem(Item item) throws SQLiteException{
         if (item == null) return;
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_ITEMS, KEY_ID + "LIKE ?", new String[]{String.valueOf(item.getId())});
+        db.delete(TABLE_ITEMS, KEY_ID + "=" + item.getId(), null);
     }
 }

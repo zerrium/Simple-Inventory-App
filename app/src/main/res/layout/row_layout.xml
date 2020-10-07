@@ -5,7 +5,44 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textViewRow"
+        android:id="@+id/textViewRow1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="center_vertical"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewRow2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="center_vertical"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewRow3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="center_vertical"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewRow4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center_vertical"
+        android:textSize="15sp" />
+
 </LinearLayout>
