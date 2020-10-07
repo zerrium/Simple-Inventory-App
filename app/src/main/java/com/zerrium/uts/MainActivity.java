@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if(text_email.equalsIgnoreCase("admin@mail.com") && text_pass.equals("admin123")){
-                    Snackbar.make(view, "Logged in", Snackbar.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(i);
                     finish();

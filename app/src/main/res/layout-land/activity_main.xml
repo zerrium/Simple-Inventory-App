@@ -38,7 +38,7 @@
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="136dp"
-                    android:layout_height="146dp"
+                    android:layout_height="136dp"
                     android:background="@drawable/ic_login"
                     android:fontFamily="@font/advent_pro_medium"
                     android:gravity="center" />
