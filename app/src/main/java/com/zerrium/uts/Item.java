@@ -1,17 +1,17 @@
 package com.zerrium.uts;
 
 public class Item {
-    private String id, name, desc;
-    private int qty;
+    private String name, desc;
+    private int id, qty;
 
-    protected Item(String id, String name, int qty, String desc){
+    protected Item(int id, String name, int qty, String desc){
         this.id = id;
         this.name = name;
         this.qty = qty;
         this.desc = desc;
     }
 
-    protected String getId(){
+    protected int getId(){
         return this.id;
     }
 

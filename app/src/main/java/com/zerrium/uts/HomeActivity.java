@@ -50,7 +50,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                 final EditText item_id = new EditText(context);
                 item_id.setHint("Item ID");
-                item_id.setSingleLine();
+                item_id.setInputType(InputType.TYPE_CLASS_NUMBER);
                 layout.addView(item_id);
 
                 final EditText item_name = new EditText(context);
@@ -87,7 +87,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                         } else {
                             SqliteHelper helper = new SqliteHelper(context);
                             try {
-                                helper.addItem(new Item(id, name, Integer.parseInt(qty), desc));
+                                helper.addItem(new Item(Integer.parseInt(id), name, Integer.parseInt(qty), desc));
                                 Snackbar.make(view, "Added new item to database", Snackbar.LENGTH_SHORT).show();
                             } catch (SQLiteException e) {
                                 Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG).show();
@@ -97,6 +97,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 });
+                dialog.setCancelable(false);
                 dialog.create().show();
                 break;
 

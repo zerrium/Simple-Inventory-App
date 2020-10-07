@@ -21,7 +21,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     private static final String KEY_QTY = "qty";
     private static final String KEY_DESC = "descr";
     private static final String SQL_TABLE_ITEMS = "CREATE TABLE " + TABLE_ITEMS +
-            "( "+ KEY_ID +" TEXT PRIMARY KEY, " +
+            "( "+ KEY_ID +" INTEGER PRIMARY KEY NOT NULL, " +
             KEY_NAME +" TEXT, " +
             KEY_QTY + " INTEGER, " +
             KEY_DESC + " TEXT)";
@@ -67,7 +67,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         ArrayList<Item> i = new ArrayList<>();
 
         while(cursor.moveToNext()){
-            i.add(new Item(cursor.getString(0), cursor.getString(1), cursor.getInt(2), cursor.getString(3)));
+            i.add(new Item(cursor.getInt(0), cursor.getString(1), cursor.getInt(2), cursor.getString(3)));
         }
 
         cursor.close();
@@ -82,12 +82,12 @@ public class SqliteHelper extends SQLiteOpenHelper {
         v.put(KEY_NAME, item.getName());
         v.put(KEY_QTY, item.getQty());
         v.put(KEY_DESC, item.getDesc());
-        db.update(TABLE_ITEMS, v, KEY_ID + "LIKE ?", new String[]{item.getId()});
+        db.update(TABLE_ITEMS, v, KEY_ID + "LIKE ?", new String[]{String.valueOf(item.getId())});
     }
 
     protected void deleteItem(Item item) throws SQLiteException{
         if (item == null) return;
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_ITEMS, KEY_ID + "LIKE ?", new String[]{item.getId()});
+        db.delete(TABLE_ITEMS, KEY_ID + "LIKE ?", new String[]{String.valueOf(item.getId())});
     }
 }
