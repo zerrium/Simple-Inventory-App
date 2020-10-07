@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
-    private Item[] dataset;
+    private ArrayList<Item> dataset;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -23,7 +25,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         }
     }
 
-    public ListAdapter(Item[] dataset){
+    public ListAdapter(ArrayList<Item> dataset){
         this.dataset = dataset;
     }
 
@@ -38,11 +40,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.textView.setText(dataset[position].getName());
+        holder.textView.setText(dataset.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return dataset.length;
+        return dataset.size();
     }
 }

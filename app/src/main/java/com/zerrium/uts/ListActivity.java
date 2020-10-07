@@ -3,6 +3,7 @@ package com.zerrium.uts;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -17,11 +18,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+
 
 public class ListActivity extends AppCompatActivity {
 
@@ -29,7 +30,7 @@ public class ListActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private SqliteHelper sqlhelper;
-    private Item[] items;
+    private ArrayList<Item> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,22 +40,14 @@ public class ListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         sqlhelper = new SqliteHelper(getApplicationContext());
-        ArrayList<Item> a = sqlhelper.getItem();
-        items = new Item[a.size()];
-        for(int i=0; i<items.length; i++){
-            items[i] = a.get(i);
-            Log.d("Items", items[i].getId() + " - " + items[i].getName());
-        }
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview1);
         recyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
+        items = sqlhelper.getItem();
         mAdapter = new ListAdapter(items);
         recyclerView.setAdapter(mAdapter);
-
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +63,7 @@ public class ListActivity extends AppCompatActivity {
                 final TextInputEditText item_id = new TextInputEditText(context);
                 item_id.setHint("Item ID");
                 item_id.setInputType(InputType.TYPE_CLASS_NUMBER);
+                item_id.setTextColor(Color.WHITE);
                 final TextInputLayout idl = new TextInputLayout(context);
                 idl.setPadding(20, 20, 20, 20);
                 idl.addView(item_id);
@@ -78,6 +72,7 @@ public class ListActivity extends AppCompatActivity {
                 final TextInputEditText item_name = new TextInputEditText(context);
                 item_name.setHint("Item name");
                 item_name.setSingleLine();
+                item_name.setTextColor(Color.WHITE);
                 final TextInputLayout namel = new TextInputLayout(context);
                 namel.setPadding(20, 20, 20, 20);
                 namel.addView(item_name);
@@ -86,6 +81,7 @@ public class ListActivity extends AppCompatActivity {
                 final TextInputEditText item_qty = new TextInputEditText(context);
                 item_qty.setHint("Item quantities");
                 item_qty.setInputType(InputType.TYPE_CLASS_NUMBER);
+                item_qty.setTextColor(Color.WHITE);
                 final TextInputLayout qtyl = new TextInputLayout(context);
                 qtyl.setPadding(20, 20, 20, 20);
                 qtyl.addView(item_qty);
@@ -94,6 +90,7 @@ public class ListActivity extends AppCompatActivity {
                 final TextInputEditText item_desc = new TextInputEditText(context);
                 item_desc.setHint("Item description (optional)");
                 item_desc.setSingleLine();
+                item_desc.setTextColor(Color.WHITE);
                 final TextInputLayout descl = new TextInputLayout(context);
                 descl.setPadding(20, 20, 20, 20);
                 descl.addView(item_desc);
@@ -118,7 +115,10 @@ public class ListActivity extends AppCompatActivity {
                         } else {
                             SqliteHelper helper = new SqliteHelper(context);
                             try {
-                                helper.addItem(new Item(Integer.parseInt(id), name, Integer.parseInt(qty), desc));
+                                Item it = new Item(Integer.parseInt(id), name, Integer.parseInt(qty), desc);
+                                helper.addItem(it);
+                                items.add(it);
+                                mAdapter.notifyItemInserted(items.size()-1);
                                 Snackbar.make(view, "Added new item to database", Snackbar.LENGTH_SHORT).show();
                             } catch (SQLiteException e) {
                                 Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG).show();

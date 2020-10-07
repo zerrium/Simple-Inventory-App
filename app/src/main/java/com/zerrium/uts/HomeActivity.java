@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -51,6 +52,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 final TextInputEditText item_id = new TextInputEditText(context);
                 item_id.setHint("Item ID");
                 item_id.setInputType(InputType.TYPE_CLASS_NUMBER);
+                item_id.setTextColor(Color.WHITE);
                 final TextInputLayout idl = new TextInputLayout(context);
                 idl.setPadding(20, 20, 20, 20);
                 idl.addView(item_id);
@@ -59,6 +61,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 final TextInputEditText item_name = new TextInputEditText(context);
                 item_name.setHint("Item name");
                 item_name.setSingleLine();
+                item_name.setTextColor(Color.WHITE);
                 final TextInputLayout namel = new TextInputLayout(context);
                 namel.setPadding(20, 20, 20, 20);
                 namel.addView(item_name);
@@ -67,6 +70,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 final TextInputEditText item_qty = new TextInputEditText(context);
                 item_qty.setHint("Item quantities");
                 item_qty.setInputType(InputType.TYPE_CLASS_NUMBER);
+                item_qty.setTextColor(Color.WHITE);
                 final TextInputLayout qtyl = new TextInputLayout(context);
                 qtyl.setPadding(20, 20, 20, 20);
                 qtyl.addView(item_qty);
@@ -75,6 +79,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 final TextInputEditText item_desc = new TextInputEditText(context);
                 item_desc.setHint("Item description (optional)");
                 item_desc.setSingleLine();
+                item_desc.setTextColor(Color.WHITE);
                 final TextInputLayout descl = new TextInputLayout(context);
                 descl.setPadding(20, 20, 20, 20);
                 descl.addView(item_desc);
