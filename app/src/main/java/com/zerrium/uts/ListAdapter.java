@@ -55,10 +55,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Item it = dataset.get(position);
-        holder.textView1.setText("ID\t\t\t\t\t\t:".concat(String.valueOf(it.getId())));
-        holder.textView2.setText("Name\t:".concat(it.getName()));
-        holder.textView3.setText("QTY\t\t\t:".concat(String.valueOf(it.getQty())));
-        holder.textView4.setText(it.getDesc().isEmpty() ? "No description" : "Desc\t\t\t\t: " + it.getDesc());
+        holder.textView1.setText(String.valueOf(it.getId()));
+        holder.textView2.setText(it.getName());
+        holder.textView3.setText(String.valueOf(it.getQty()));
+        holder.textView4.setText(it.getDesc().isEmpty() ? "No description" : "Desc : " + it.getDesc());
         View.OnClickListener vocl = new View.OnClickListener() {
             @Override
             public void onClick(final View view) {

@@ -4,35 +4,89 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textViewRow1"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:gravity="center_vertical"
-        android:textSize="20sp" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textViewRow2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:gravity="center_vertical"
-        android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="22dp"
+            android:gravity="center_vertical"
+            android:text="ID"
+            android:textStyle="bold"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/textViewRow3"
+        <TextView
+            android:id="@+id/textViewRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="30dp"
+            android:gravity="center_vertical"
+            android:text="Test"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:gravity="center_vertical"
-        android:textSize="20sp" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center_vertical"
+            android:text="Name"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="30dp"
+            android:gravity="center_vertical"
+            android:text="Test"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="12dp"
+            android:gravity="center_vertical"
+            android:text="QTY"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewRow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="30dp"
+            android:gravity="center_vertical"
+            android:text="Test"
+            android:textSize="20sp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textViewRow4"
@@ -43,6 +97,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
         android:gravity="center_vertical"
+        android:text="Test"
         android:textSize="15sp" />
 
 </LinearLayout>
