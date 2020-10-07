@@ -11,12 +11,12 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,30 +43,42 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonAdd:
                 final Context context = view.getContext();
 
-                AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(context, R.style.DialogTheme);
                 dialog.setTitle("Add new item");
                 LinearLayout layout = new LinearLayout(context);
                 layout.setOrientation(LinearLayout.VERTICAL);
 
-                final EditText item_id = new EditText(context);
+                final TextInputEditText item_id = new TextInputEditText(context);
                 item_id.setHint("Item ID");
                 item_id.setInputType(InputType.TYPE_CLASS_NUMBER);
-                layout.addView(item_id);
+                final TextInputLayout idl = new TextInputLayout(context);
+                idl.setPadding(20, 20, 20, 20);
+                idl.addView(item_id);
+                layout.addView(idl);
 
-                final EditText item_name = new EditText(context);
+                final TextInputEditText item_name = new TextInputEditText(context);
                 item_name.setHint("Item name");
                 item_name.setSingleLine();
-                layout.addView(item_name);
+                final TextInputLayout namel = new TextInputLayout(context);
+                namel.setPadding(20, 20, 20, 20);
+                namel.addView(item_name);
+                layout.addView(namel);
 
-                final EditText item_qty = new EditText(context);
+                final TextInputEditText item_qty = new TextInputEditText(context);
                 item_qty.setHint("Item quantities");
                 item_qty.setInputType(InputType.TYPE_CLASS_NUMBER);
-                layout.addView(item_qty);
+                final TextInputLayout qtyl = new TextInputLayout(context);
+                qtyl.setPadding(20, 20, 20, 20);
+                qtyl.addView(item_qty);
+                layout.addView(qtyl);
 
-                final EditText item_desc = new EditText(context);
+                final TextInputEditText item_desc = new TextInputEditText(context);
                 item_desc.setHint("Item description (optional)");
                 item_desc.setSingleLine();
-                layout.addView(item_desc);
+                final TextInputLayout descl = new TextInputLayout(context);
+                descl.setPadding(20, 20, 20, 20);
+                descl.addView(item_desc);
+                layout.addView(descl);
 
                 dialog.setView(layout);
                 dialog.setNegativeButton("Cancel", null);

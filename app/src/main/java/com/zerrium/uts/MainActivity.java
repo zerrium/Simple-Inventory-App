@@ -15,9 +15,10 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
+    private TextInputLayout emailLayout, passwordLayout;
     private EditText email, password;
     private Button login;
     private CheckBox show_pass;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.editPassword);
         login = (Button) findViewById(R.id.buttonLogin);
         show_pass = (CheckBox) findViewById(R.id.checkBoxShowPass);
+        emailLayout = (TextInputLayout) findViewById(R.id.textInputLayoutEmail);
+        passwordLayout = (TextInputLayout) findViewById(R.id.textInputLayoutPassword);
 
         show_pass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -47,12 +50,12 @@ public class MainActivity extends AppCompatActivity {
                 String text_pass = password.getText().toString();
 
                 if(text_email.isEmpty()){
-                    Snackbar.make(view, "Please enter e-mail address!", Snackbar.LENGTH_LONG).show();
+                    emailLayout.setError("Please enter e-mail address");
                     return;
                 }
 
                 if(text_pass.isEmpty()){
-                    Snackbar.make(view, "Please enter password!", Snackbar.LENGTH_LONG).show();
+                    passwordLayout.setError("Please enter password");
                     return;
                 }
 
@@ -62,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 }else{
+                    emailLayout.setError(null);
+                    passwordLayout.setError(null);
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setMessage("Incorrect e-mail address or password!").setNegativeButton("Retry", null).create().show();
                 }
