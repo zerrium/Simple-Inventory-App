@@ -58,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if(text_email.equalsIgnoreCase("admin@mail.com") && text_pass.equals("admin123")){
                     Snackbar.make(view, "Logged in", Snackbar.LENGTH_SHORT).show();
-                    //Intent i = new Intent(MainActivity.this, Home.class);
-                    //startActivity(i);
-                    //finish();
+                    Intent i = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(i);
+                    finish();
                 }else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setMessage("Incorrect e-mail address or password!").setNegativeButton("Retry", null).create().show();
