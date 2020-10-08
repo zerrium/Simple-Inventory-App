@@ -24,20 +24,18 @@ import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button add, list, logout, help;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        add = (Button) findViewById(R.id.buttonAdd);
+        Button add = (Button) findViewById(R.id.buttonAdd);
         add.setOnClickListener(this);
-        list = (Button) findViewById(R.id.buttonList);
+        Button list = (Button) findViewById(R.id.buttonList);
         list.setOnClickListener(this);
-        logout = (Button) findViewById(R.id.buttonLogout);
+        Button logout = (Button) findViewById(R.id.buttonLogout);
         logout.setOnClickListener(this);
-        help = (Button) findViewById(R.id.buttonHelp);
+        Button help = (Button) findViewById(R.id.buttonHelp);
         help.setOnClickListener(this);
     }
 

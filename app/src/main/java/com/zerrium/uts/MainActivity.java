@@ -21,9 +21,6 @@ import com.google.android.material.textfield.TextInputLayout;
 public class MainActivity extends AppCompatActivity {
     private TextInputLayout emailLayout, passwordLayout;
     private EditText email, password;
-    private Button login;
-    private CheckBox show_pass;
-    private int  version = Build.VERSION.SDK_INT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
         email = (EditText) findViewById(R.id.editEmail);
         password = (EditText) findViewById(R.id.editPassword);
-        login = (Button) findViewById(R.id.buttonLogin);
-        show_pass = (CheckBox) findViewById(R.id.checkBoxShowPass);
+        Button login = (Button) findViewById(R.id.buttonLogin);
+        CheckBox show_pass = (CheckBox) findViewById(R.id.checkBoxShowPass);
         emailLayout = (TextInputLayout) findViewById(R.id.textInputLayoutEmail);
         passwordLayout = (TextInputLayout) findViewById(R.id.textInputLayoutPassword);
 

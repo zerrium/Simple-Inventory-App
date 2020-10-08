@@ -13,8 +13,6 @@ import androidx.appcompat.widget.Toolbar;
 
 public class HelpActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Button buttonGithub, buttonHotline, buttonEmail, buttonReport;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +27,14 @@ public class HelpActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        buttonGithub = (Button) findViewById(R.id.buttonGithub);
-        buttonHotline = (Button) findViewById(R.id.buttonHotline);
-        buttonEmail = (Button) findViewById(R.id.buttonEmail);
-        buttonReport = (Button) findViewById(R.id.buttonReport);
+        Button buttonGithub = (Button) findViewById(R.id.buttonGithub);
+        buttonGithub.setOnClickListener(this);
+        Button buttonHotline = (Button) findViewById(R.id.buttonHotline);
+        buttonHotline.setOnClickListener(this);
+        Button buttonEmail = (Button) findViewById(R.id.buttonEmail);
+        buttonEmail.setOnClickListener(this);
+        Button buttonReport = (Button) findViewById(R.id.buttonReport);
+        buttonReport.setOnClickListener(this);
     }
 
     @SuppressLint("ShowToast")

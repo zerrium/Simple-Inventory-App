@@ -28,9 +28,7 @@ import java.util.Objects;
 
 public class ListActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
     private static RecyclerView.Adapter<ListAdapter.ViewHolder> mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
     private static SqliteHelper sqlhelper;
     private static ArrayList<Item> items;
 
@@ -49,10 +47,10 @@ public class ListActivity extends AppCompatActivity {
         });
 
         sqlhelper = new SqliteHelper(getApplicationContext());
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview1);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview1);
         recyclerView.setHasFixedSize(true);
 
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         items = sqlhelper.getItem();
         mAdapter = new ListAdapter(items);
