@@ -2,13 +2,14 @@ package com.zerrium.uts;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.database.sqlite.SQLiteException;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +21,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -33,6 +33,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         // each data item is just a string in this case
         TextView textView1, textView2, textView3, textView4;
         CardView cardView;
+        int colorAccent;
 
         public ViewHolder(View v) {
             super(v);
@@ -41,6 +42,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             textView3 = (TextView) v.findViewById(R.id.textViewRow3);
             textView4 = (TextView) v.findViewById(R.id.textViewRow4);
             cardView = (CardView) v.findViewById(R.id.cardView);
+            colorAccent = v.getResources().getColor(R.color.colorAccent);
         }
     }
 
@@ -57,7 +59,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Item it = dataset.get(position);
         holder.textView1.setText(String.valueOf(it.getId()));
         holder.textView2.setText(it.getName());
@@ -70,6 +72,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
                 AlertDialog.Builder dialog = new AlertDialog.Builder(context, R.style.DialogTheme);
                 dialog.setTitle("Edit item");
+
+                final ScrollView sc = new ScrollView(context);
+                sc.setOverScrollMode(View.OVER_SCROLL_IF_CONTENT_SCROLLS);
+
                 LinearLayout layout = new LinearLayout(context);
                 layout.setOrientation(LinearLayout.VERTICAL);
 
@@ -77,9 +83,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 item_id.setHint("Item ID");
                 item_id.setInputType(InputType.TYPE_CLASS_NUMBER);
                 item_id.setTextColor(Color.WHITE);
-                item_id.setText(String.valueOf(it.getId()));
+                item_id.setHintTextColor(ColorStateList.valueOf(Color.argb(127, 255, 255, 255)));
                 item_id.setEnabled(false);
                 final TextInputLayout idl = new TextInputLayout(context);
+                idl.setHintTextColor(ColorStateList.valueOf(holder.colorAccent));
                 idl.setPadding(20, 20, 20, 20);
                 idl.addView(item_id);
                 layout.addView(idl);
@@ -88,8 +95,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 item_name.setHint("Item name");
                 item_name.setSingleLine();
                 item_name.setTextColor(Color.WHITE);
-                item_name.setText(it.getName());
+                item_name.setHintTextColor(ColorStateList.valueOf(Color.argb(127, 255, 255, 255)));
                 final TextInputLayout namel = new TextInputLayout(context);
+                namel.setHintTextColor(ColorStateList.valueOf(holder.colorAccent));
                 namel.setPadding(20, 20, 20, 20);
                 namel.addView(item_name);
                 layout.addView(namel);
@@ -98,8 +106,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 item_qty.setHint("Item quantities");
                 item_qty.setInputType(InputType.TYPE_CLASS_NUMBER);
                 item_qty.setTextColor(Color.WHITE);
-                item_qty.setText(String.valueOf(it.getQty()));
+                item_qty.setHintTextColor(ColorStateList.valueOf(Color.argb(127, 255, 255, 255)));
                 final TextInputLayout qtyl = new TextInputLayout(context);
+                qtyl.setHintTextColor(ColorStateList.valueOf(holder.colorAccent));
                 qtyl.setPadding(20, 20, 20, 20);
                 qtyl.addView(item_qty);
                 layout.addView(qtyl);
@@ -108,13 +117,21 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 item_desc.setHint("Item description (optional)");
                 item_desc.setSingleLine();
                 item_desc.setTextColor(Color.WHITE);
-                item_desc.setText(it.getDesc());
+                item_desc.setHintTextColor(ColorStateList.valueOf(Color.argb(127, 255, 255, 255)));
                 final TextInputLayout descl = new TextInputLayout(context);
+                descl.setHintTextColor(ColorStateList.valueOf(holder.colorAccent));
                 descl.setPadding(20, 20, 20, 20);
                 descl.addView(item_desc);
                 layout.addView(descl);
 
-                dialog.setView(layout);
+                sc.addView(layout);
+                dialog.setView(sc);
+
+                item_id.setText(String.valueOf(it.getId()));
+                item_name.setText(it.getName());
+                item_qty.setText(String.valueOf(it.getQty()));
+                item_desc.setText(it.getDesc());
+
                 dialog.setNegativeButton("Cancel", null);
                 dialog.setNeutralButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
