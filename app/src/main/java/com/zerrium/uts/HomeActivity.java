@@ -141,7 +141,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.buttonHelp:
-                //startActivity(new Intent(HomeActivity.this, HelpActivity.class));
+                startActivity(new Intent(HomeActivity.this, HelpActivity.class));
                 break;
         }
     }

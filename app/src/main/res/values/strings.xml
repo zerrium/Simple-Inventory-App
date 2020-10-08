@@ -14,4 +14,16 @@
     <string name="test">Test</string>
     <string name="name">Name</string>
     <string name="qty">QTY</string>
+    <string name="title_activity_help">Inventory Help</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="developed_by_nwilly_stevanus_susilo_32180075_na_k_a_zerrium">Developed by:\nWilly Stevanus Susilo (32180075)\na.k.a Zerrium</string>
+    <string name="view_source_code_github">View source code (GitHub)</string>
+    <string name="having_issues">Having issues?</string>
+    <string name="call_our_hotline">Call our hotline</string>
+    <string name="email_us">Email us</string>
+    <string name="open_issues_on_github">Open an issue on GitHub</string>
 </resources>

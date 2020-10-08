@@ -40,6 +40,13 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         sqlhelper = new SqliteHelper(getApplicationContext());
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview1);
