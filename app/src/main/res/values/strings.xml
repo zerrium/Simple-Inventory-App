@@ -10,4 +10,8 @@
     <string name="logout">Logout</string>
     <string name="main_menu">Main Menu</string>
     <string name="title_activity_list">Inventory List</string>
+    <string name="id">ID</string>
+    <string name="test">Test</string>
+    <string name="name">Name</string>
+    <string name="qty">QTY</string>
 </resources>

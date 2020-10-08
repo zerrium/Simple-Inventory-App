@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -22,6 +23,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
@@ -29,13 +31,16 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        protected TextView textView1, textView2, textView3, textView4;
+        TextView textView1, textView2, textView3, textView4;
+        CardView cardView;
+
         public ViewHolder(View v) {
             super(v);
             textView1 = (TextView) v.findViewById(R.id.textViewRow1);
             textView2 = (TextView) v.findViewById(R.id.textViewRow2);
             textView3 = (TextView) v.findViewById(R.id.textViewRow3);
             textView4 = (TextView) v.findViewById(R.id.textViewRow4);
+            cardView = (CardView) v.findViewById(R.id.cardView);
         }
     }
 
@@ -48,8 +53,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public ListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = (View) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.row_layout, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     @Override
@@ -59,7 +63,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.textView2.setText(it.getName());
         holder.textView3.setText(String.valueOf(it.getQty()));
         holder.textView4.setText(it.getDesc().isEmpty() ? "No description" : "Desc : " + it.getDesc());
-        View.OnClickListener vocl = new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
                 final Context context = view.getContext();
@@ -118,20 +122,18 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                         try {
                             ListActivity.deleteList(it);
                             Snackbar.make(view, "Deleted item from database", Snackbar.LENGTH_SHORT).show();
-                        } catch (SQLiteException e) {
-                            Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG).show();
-                        } catch (Exception e){
-                            Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG).show();
+                        } catch (Exception e) {
+                            Snackbar.make(view, Objects.requireNonNull(e.getMessage()), Snackbar.LENGTH_LONG).show();
                         }
                     }
                 });
                 dialog.setPositiveButton("Update", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        final String id = item_id.getText().toString();
-                        final String name = item_name.getText().toString();
-                        final String qty = item_qty.getText().toString();
-                        final String desc = item_desc.getText().toString();
+                        final String id = Objects.requireNonNull(item_id.getText()).toString();
+                        final String name = Objects.requireNonNull(item_name.getText()).toString();
+                        final String qty = Objects.requireNonNull(item_qty.getText()).toString();
+                        final String desc = Objects.requireNonNull(item_desc.getText()).toString();
 
                         if (name.isEmpty()) {
                             Snackbar.make(view, "Please enter item name!", Snackbar.LENGTH_LONG).show();
@@ -142,10 +144,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                             try {
                                 ListActivity.updateList(ite, it);
                                 Snackbar.make(view, "Updated item to database", Snackbar.LENGTH_SHORT).show();
-                            } catch (SQLiteException e) {
-                                Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG).show();
-                            } catch (Exception e){
-                                Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_LONG).show();
+                            } catch (Exception e) {
+                                Snackbar.make(view, Objects.requireNonNull(e.getMessage()), Snackbar.LENGTH_LONG).show();
                             }
                         }
                     }
@@ -153,12 +153,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 dialog.setCancelable(false);
                 dialog.create().show();
             }
-        };
-
-        holder.textView1.setOnClickListener(vocl);
-        holder.textView2.setOnClickListener(vocl);
-        holder.textView3.setOnClickListener(vocl);
-        holder.textView4.setOnClickListener(vocl);
+        });
     }
 
     @Override
